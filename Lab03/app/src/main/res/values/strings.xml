@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Lab03</string>
+    <string name="Incorrect_Label">Incorrect</string>
+    <string name="Button_Text">Check Password</string>
+    <string name="Password_Label">Password</string>
+    <string name="Enter_Pass_Label" />
+</resources>
