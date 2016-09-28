@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Homework1</string>
+    <string name="Value_1_Label">"Value 1: "</string>
+    <string name="Value_2_Label">Value 2:</string>
+    <string name="Operator_Label">Operator:</string>
+    <string name="Calculate_Button">Calculate</string>
+    <string name="Final_Val" />
+    <string-array name="operator_array">
+        <item>Addition +</item>
+        <item>Subtraction -</item>
+        <item>Multiplication *</item>
+        <item>Division /</item>
+    </string-array>
+</resources>
