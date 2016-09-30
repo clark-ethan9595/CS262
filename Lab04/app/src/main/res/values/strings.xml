@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Lab04</string>
+    <string name="Main_TextView">Hello, Lab04! Created by elc3.</string>
+    <string name="About_Menu">About</string>
+    <string name="About_TextField">This is the about page for lab 4 (elc3).</string>
+    <string name="About_Menu_Title">Lab04 About</string>
+</resources>
