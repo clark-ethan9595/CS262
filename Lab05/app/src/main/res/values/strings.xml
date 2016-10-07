@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Lab05</string>
+    <string name="Intro_TextView">Hello, Lab05! Created by Ethan Clark (elc3) and Russ Clousing (rlc32).</string>
+    <string name="Settings_Menu">Settings</string>
+    <string name="About_Menu">About</string>
+    <string name="test_preference">This is a test preference.</string>
+    <string name="test_summary">This is a summary of the test preference for Ethan Clark</string>
+</resources>
