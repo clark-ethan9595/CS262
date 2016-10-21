@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ID_textView"
+            style="@style/normalText"
+            android:text="@string/ID_Number_Text"
+            android:layout_weight="0.21" />
+
+        <TextView
+            android:text="@string/separator_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/separator1"
+            android:layout_weight="0.21"
+            android:paddingRight="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/name_textView"
+            style="@style/normalText"
+            android:text="@string/Name_Text"
+            android:layout_weight="0.39" />
+
+        <TextView
+            android:text="@string/separator_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/separator2"
+            android:layout_weight="0.21"
+            android:paddingRight="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/email_textView"
+            style="@style/normalText"
+            android:text="@string/EmailAddress_Text" />
+
+    </LinearLayout>
+
+</LinearLayout>
