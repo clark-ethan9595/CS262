@@ -2,7 +2,7 @@
     <string name="app_name">Homework2</string>
     <string name="player_value" />
     <string name="fetch_button">FETCH</string>
-    <string name="web_service_url">http://cs262.cs.calvin.edu:8089/monopoly/players</string>
+    <string name="web_service_url">http://153.106.116.88:9998/monopoly/players</string>
     <string name="web_service_url_2">http://cs262.cs.calvin.edu:8089/monopoly/player/</string>
     <string name="connection_error">Failed to connect to service...</string>
     <string name="ID_Number_Text">ID Number</string>
