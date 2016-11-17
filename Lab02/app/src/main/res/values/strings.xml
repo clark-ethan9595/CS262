@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">lab02</string>
+    <string name="Value_Label">Value</string>
+    <string name="Edit_Text" />
+    <string name="Double_Button">Double the Value</string>
+    <string name="Doubled_Value" />
+</resources>
