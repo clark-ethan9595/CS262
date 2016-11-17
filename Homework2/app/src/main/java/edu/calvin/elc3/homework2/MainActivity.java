@@ -24,6 +24,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import android.util.Log;
 
 /*
@@ -41,12 +42,10 @@ import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Declare all the necessary private variables for this MainActivity
+    /* Declare all the necessary private variables for this MainActivity */
     private EditText playerText;
-    private Button fetchButton;
-    private List<Player> playerList = new ArrayList<>();
+    private final List<Player> playerList = new ArrayList<>();
     private ListView itemsListView;
-    private static String TAG = "MainActivity";
     private boolean determine;
 
     /*
@@ -61,12 +60,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         playerText = (EditText) findViewById(R.id.playerText);
-        fetchButton = (Button) findViewById(R.id.fetchButton);
+        Button fetchButton = (Button) findViewById(R.id.fetchButton);
         itemsListView = (ListView) findViewById(R.id.playerListView);
 
         // Listens for the button on the MainActivity to be pushed
         //      Dismisses the keyboard and then calls GetPlayersTask()
         fetchButton.setOnClickListener(new View.OnClickListener() {
+
+            /*
+             * onClick() is the function that is performed when the fetchButton is pressed
+             *
+             * @param: View v
+             * @return: none
+             */
             @Override
             public void onClick(View v) {
                 dismissKeyboard(playerText);
@@ -100,13 +106,13 @@ public class MainActivity extends AppCompatActivity {
         try {
             String urlString;
 
-            // If the EditText field was blank...
+            /* If the EditText field was blank... */
             if (player.equals("")) {
                 determine = true;
                 urlString = getString(R.string.web_service_url);
             }
 
-            // Else take in the postive integer the user inputs...
+            /* Else take in the positive integer the user inputs... */
             else {
                 determine = false;
                 urlString = getString(R.string.web_service_url_2) + URLEncoder.encode(player, "UTF-8");
@@ -128,6 +134,13 @@ public class MainActivity extends AppCompatActivity {
      */
     private class GetPlayersTask extends AsyncTask<URL, Void, JSONArray> {
 
+        /*
+         * doInBackground() connects to the appropriate server when an instance of GetPlayersTask
+         *      is created (is done in the background obviously)
+         *
+         * @param: URL... params
+         * @return JSONArray
+         */
         @Override
         protected JSONArray doInBackground(URL... params) {
             HttpURLConnection connection = null;
@@ -152,18 +165,22 @@ public class MainActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
+                assert connection != null;
                 connection.disconnect();
             }
             return null;
         }
 
-        // Calls the necessary methods to update the display accordingly
+        /*
+         * onPostExecute() calls the necessary methods if a player was returned from
+         *      the doInBackground() method above
+         *
+         * @param: JSONArray player
+         * @return: none
+         */
         @Override
         protected void onPostExecute(JSONArray player) {
             if (player != null) {
-
-                // Helpful to determine what the JSON format looks like (i.e. what the keys are)
-                //Log.d(TAG, player.toString());
 
                 convertJSONtoArrayList(player);
                 MainActivity.this.updateDisplay();
@@ -178,12 +195,13 @@ public class MainActivity extends AppCompatActivity {
      * Converts the JSON player data to an arraylist suitable for a listview adapter
      *
      * @param player_obj
+     * @return: none
      *
      * Altered from Lab06
      */
     private void convertJSONtoArrayList(JSONArray player_obj) {
 
-        // clear old player data
+        /* clear old player data */
         playerList.clear();
 
         try {
@@ -194,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
                 String name;
                 try {
                     name = player.getString("name");
-                } catch(JSONException e) {
+                } catch (JSONException e) {
                     name = "No name given";
                 }
                 playerList.add(new Player(name, email, ID));
@@ -206,21 +224,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
-     * Refresh the player data on the player ListView through a simple adapter
+     * updateDisplay() updates the ListView from the layout page with the necessary players
+     *
+     * @param: none
+     * @return: none
      *
      * Altered from Lab06
      */
     private void updateDisplay() {
 
-        // Generate toast if playerList is empty...
+        /* Generate toast if playerList is empty... */
         if (playerList == null) {
             Toast.makeText(MainActivity.this, getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
         }
 
-        // Update ArrayList with the necessary elements
-        ArrayList<HashMap<String, String>> data = new ArrayList<HashMap<String, String>>();
+        /* Update ArrayList with the necessary elements */
+        ArrayList<HashMap<String, String>> data = new ArrayList<>();
         for (Player item : playerList) {
-            HashMap<String, String> map = new HashMap<String, String>();
+            HashMap<String, String> map = new HashMap<>();
             map.put("id", item.getID_num());
             map.put("name", item.getName());
             map.put("email", item.getEmail_address());
@@ -231,9 +252,10 @@ public class MainActivity extends AppCompatActivity {
         String[] from = {"id", "name", "email"};
         int[] to = {R.id.ID_textView, R.id.name_textView, R.id.email_textView};
 
-        // Add the elements to the adapter and set the adapter in the itemsListView
+        /* Add the elements to the adapter and set the adapter in the itemsListView */
         SimpleAdapter adapter = new SimpleAdapter(this, data, resource, from, to);
         itemsListView.setAdapter(adapter);
+        String TAG = "MainActivity";
         Log.d(TAG, "Display should be updated");
     }
 }
